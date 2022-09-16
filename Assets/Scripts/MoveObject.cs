@@ -7,15 +7,14 @@ public class MoveObject : MonoBehaviour // MoveObject inherits from MonoBehaviou
     [SerializeField] float moveSpeed;
     [SerializeField] Vector3 moveDirection;
     [SerializeField] GameObject stationarySphere;
+    [SerializeField] float totalMoveDistance;
 
-    float totalMoveDistance;
     Vector3 startingLocation;   
 
     // These next two are inherited from MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        totalMoveDistance = 10f;
         startingLocation = gameObject.transform.position;
     }
 
@@ -27,9 +26,14 @@ public class MoveObject : MonoBehaviour // MoveObject inherits from MonoBehaviou
         if (distanceTraveled > totalMoveDistance)
         {
             FlipMoveDirection();
+            startingLocation = gameObject.transform.position;
+            this.enabled = false;
+        }
+        else
+        {
+            gameObject.transform.Translate(moveDirection * moveSpeed);
         }
 
-        gameObject.transform.Translate(moveDirection * moveSpeed);
     }
 
     void FlipMoveDirection()

@@ -23,4 +23,9 @@ public class MovementActivator : MonoBehaviour
     {
         objectToActivate.GetComponent<MoveObject>().enabled = true;
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        objectToActivate.GetComponent<MoveObject>().enabled = true;
+    }
 }
